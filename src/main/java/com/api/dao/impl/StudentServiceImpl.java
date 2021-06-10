@@ -1,6 +1,7 @@
 package com.api.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.api.models.Student;
@@ -35,19 +36,5 @@ public class StudentServiceImpl implements StudentService {
 	        
 	}
 
-
-	@Override
-	public Student studentExist(String str) {
-		 Student s = null;
-		try {
-		    s = this.studentRepository.findByMobileNumber(str);
-		    return s;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			return s;
-		}
-	}
 
 }

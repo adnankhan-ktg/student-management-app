@@ -40,10 +40,7 @@ public class RegistrationController {
 	   @PostMapping("/getotp")
 	   public ResponseEntity<String> sendOTP(@RequestBody SmsPojo sms)
 	   {
-		   if(this.studentService.studentExist(sms.getPhoneNo()) != null)
-		   {
-			   return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).build();
-		   }
+		  
 		   
 		   try{
 	         	System.out.println("hello"); 
