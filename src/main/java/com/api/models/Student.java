@@ -1,7 +1,6 @@
 package com.api.models;
 
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 //import org.springframework.data.mongodb.core.index.TextIndexed;
 // import org.springframework.data.annotation.Id;
@@ -9,15 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "student")
 public class Student {
-    
-    
-	
-
-	
 
 
-//	 @Id
-//     private long id;
      private String firstName;
      private String lastName;
      private String fatherFirstName;
@@ -34,12 +26,7 @@ public class Student {
      private String casteCategory;
      private String fatherAnnualIncome;
      private int OTP;
-//	public long getId() {
-//		return id;
-//	}
-//	public void setId(long id) {
-//		this.id = id;
-//	}
+
 	public String getFirstName() {
 		return firstName;
 	}
