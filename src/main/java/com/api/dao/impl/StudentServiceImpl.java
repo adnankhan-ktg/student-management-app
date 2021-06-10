@@ -35,4 +35,19 @@ public class StudentServiceImpl implements StudentService {
 	        
 	}
 
+
+	@Override
+	public Student studentExist(String str) {
+		 Student s = null;
+		try {
+		    s = this.studentRepository.findByMobileNumber(str);
+		    return s;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return s;
+		}
+	}
+
 }

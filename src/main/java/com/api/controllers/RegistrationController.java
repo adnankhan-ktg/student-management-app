@@ -40,6 +40,10 @@ public class RegistrationController {
 	   @PostMapping("/getotp")
 	   public ResponseEntity<String> sendOTP(@RequestBody SmsPojo sms)
 	   {
+		   if(this.studentService.studentExist(sms.getPhoneNo()) != null)
+		   {
+			   return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).build();
+		   }
 		   
 		   try{
 	         	System.out.println("hello"); 
@@ -65,11 +69,11 @@ public class RegistrationController {
 	   @PostMapping("/register")
 	   public ResponseEntity<String> addStudent(@RequestBody Student student)
 	   {
-//		         ok
+
 				System.out.println(student.toString());
 				
 				String phoneno = "+91"+Long.toString(student.getMobileNumber());
-//				String otp = Integer.toString(student.getOTP());/
+
 				
 			    int serverOtp = otpservice.getOtp(phoneno);
 				int clientOtp = student.getOTP();
