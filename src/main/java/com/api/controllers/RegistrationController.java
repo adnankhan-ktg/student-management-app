@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.api.models.SmsPojo;
 import com.api.models.Student;
+import com.api.repositories.StudentRepository;
 import com.api.services.OtpService;
 import com.api.services.SmsService;
 import com.api.services.StudentService;
@@ -33,6 +34,9 @@ public class RegistrationController {
     @Autowired
     private SimpMessagingTemplate webSocket;
     
+    @Autowired
+    private StudentRepository studentRepository;
+    
     private final String  TOPIC_DESTINATION = "/lesson/sms";
     
 
@@ -40,19 +44,26 @@ public class RegistrationController {
 	   @PostMapping("/getotp")
 	   public ResponseEntity<String> sendOTP(@RequestBody SmsPojo sms)
 	   {
-		  
+		   String s = sms.getPhoneNo();   
+		   if(this.studentRepository.findByMobileNumber(s) != null) 
+		   {
+			   return ResponseEntity.ok("user already Register");
+		   }
+		   else
+		   {
 		   
-		   try{
-	         	System.out.println("hello"); 
-	         	service.send(sms);
-	             System.out.println("hello");
-	             webSocket.convertAndSend(TOPIC_DESTINATION, getTimeStamp() + ": SMS has been sent!: "+sms.getPhoneNo());
-	             return new ResponseEntity<String>("OTP Send successfully",HttpStatus.OK);
-	         }
-	         catch(Exception e){
+		  
+		         try{
+	         	 System.out.println("hello"); 
+	         	 service.send(sms);
+	              System.out.println("hello");
+	              webSocket.convertAndSend(TOPIC_DESTINATION, getTimeStamp() + ": SMS has been sent!: "+sms.getPhoneNo());
+	              return new ResponseEntity<String>("OTP Send successfully",HttpStatus.OK);
+	              }
+	             catch(Exception e){
 
 	         	 return new ResponseEntity<String>("somthing problem",HttpStatus.INTERNAL_SERVER_ERROR);
-	         }
+	         }     }
 		   
 	   }
 	   
@@ -69,7 +80,7 @@ public class RegistrationController {
 
 				System.out.println(student.toString());
 				
-				String phoneno = "+91"+Long.toString(student.getMobileNumber());
+				String phoneno = "+91"+student.getMobileNumber();
 
 				
 			    int serverOtp = otpservice.getOtp(phoneno);
