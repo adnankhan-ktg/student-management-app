@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.api.models.SmsPojo;
 import com.api.models.Student;
+import com.api.repositories.StudentRepository;
 import com.api.services.OtpService;
 import com.api.services.SmsService;
 import com.api.services.StudentService;
@@ -33,6 +34,9 @@ public class RegistrationController {
     @Autowired
     private SimpMessagingTemplate webSocket;
     
+    @Autowired
+    private StudentRepository studentRepository;
+    
     private final String  TOPIC_DESTINATION = "/lesson/sms";
     
 
@@ -40,18 +44,26 @@ public class RegistrationController {
 	   @PostMapping("/getotp")
 	   public ResponseEntity<String> sendOTP(@RequestBody SmsPojo sms)
 	   {
+		   String s = sms.getPhoneNo();   
+		   if(this.studentRepository.findByMobileNumber(s) != null) 
+		   {
+			   return ResponseEntity.ok("user already Register");
+		   }
+		   else
+		   {
 		   
-		   try{
-	         	System.out.println("hello"); 
-	         	service.send(sms);
-	             System.out.println("hello");
-	             webSocket.convertAndSend(TOPIC_DESTINATION, getTimeStamp() + ": SMS has been sent!: "+sms.getPhoneNo());
-	             return new ResponseEntity<String>("OTP Send successfully",HttpStatus.OK);
-	         }
-	         catch(Exception e){
+		  
+		         try{
+	         	 System.out.println("hello"); 
+	         	 service.send(sms);
+	              System.out.println("hello");
+	              webSocket.convertAndSend(TOPIC_DESTINATION, getTimeStamp() + ": SMS has been sent!: "+sms.getPhoneNo());
+	              return new ResponseEntity<String>("OTP Send successfully",HttpStatus.OK);
+	              }
+	             catch(Exception e){
 
 	         	 return new ResponseEntity<String>("somthing problem",HttpStatus.INTERNAL_SERVER_ERROR);
-	         }
+	         }     }
 		   
 	   }
 	   
@@ -65,11 +77,11 @@ public class RegistrationController {
 	   @PostMapping("/register")
 	   public ResponseEntity<String> addStudent(@RequestBody Student student)
 	   {
-//		         ok
+
 				System.out.println(student.toString());
 				
-				String phoneno = "+91"+Long.toString(student.getMobileNumber());
-//				String otp = Integer.toString(student.getOTP());/
+				String phoneno = "+91"+student.getMobileNumber();
+
 				
 			    int serverOtp = otpservice.getOtp(phoneno);
 				int clientOtp = student.getOTP();
@@ -81,6 +93,8 @@ public class RegistrationController {
 //					student.setOTP(0);
 					
 //					code for save data to DB
+					 String y = student.getMobileNumber();
+					 student.setMobileNumber("+91"+y);
 					  Student student2 = this.studentService.addStudent(student);
 					   if(student2 == null)
 					   {

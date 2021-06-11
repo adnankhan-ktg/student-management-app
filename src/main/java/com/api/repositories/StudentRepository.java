@@ -10,5 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StudentRepository extends MongoRepository<Student , Long> {
     
-    
+       public Student findByMobileNumber(String str);
+       
+       
 }

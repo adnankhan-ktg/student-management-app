@@ -2,8 +2,6 @@ package com.api.models;
 
 
 import org.springframework.data.mongodb.core.index.Indexed;
-//import org.springframework.data.mongodb.core.index.TextIndexed;
-// import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "student")
@@ -14,7 +12,7 @@ public class Student {
      private String lastName;
      private String fatherFirstName;
      @Indexed(unique = true)
-     private Long mobileNumber;
+     private String mobileNumber;
      private String schoolStream;
      private String townName;
      private String collageStream;
@@ -45,10 +43,10 @@ public class Student {
 	public void setFatherFirstName(String fatherFirstName) {
 		this.fatherFirstName = fatherFirstName;
 	}
-	public Long getMobileNumber() {
+	public String getMobileNumber() {
 		return mobileNumber;
 	}
-	public void setMobileNumber(Long mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 	public String getSchoolStream() {
@@ -117,7 +115,7 @@ public class Student {
 	public void setOTP(int OTP) {
 		this.OTP = OTP;
 	}
-	public Student(long id, String firstName, String lastName, String fatherFirstName, Long mobileNumber,
+	public Student(long id, String firstName, String lastName, String fatherFirstName, String mobileNumber,
 			String schoolStream, String townName, String collageStream, String aadharNumber, String schoolName,
 			String tenthPercentage, String eleventhPercentage, String twelthPercentage, String casteCategory,
 			String fatherAnnualIncome, int oTP) {
