@@ -1,5 +1,8 @@
 package com.api.models;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SmsPojo {
 	
 

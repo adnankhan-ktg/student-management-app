@@ -93,6 +93,8 @@ public class RegistrationController {
 //					student.setOTP(0);
 					
 //					code for save data to DB
+					 String y = student.getMobileNumber();
+					 student.setMobileNumber("+91"+y);
 					  Student student2 = this.studentService.addStudent(student);
 					   if(student2 == null)
 					   {
