@@ -23,7 +23,7 @@ public class Student {
      private String twelthPercentage;
      private String casteCategory;
      private String fatherAnnualIncome;
-     private int OTP;
+     private String OTP;
 
 	public String getFirstName() {
 		return firstName;
@@ -109,16 +109,16 @@ public class Student {
 	public void setFatherAnnualIncome(String fatherAnnualIncome) {
 		this.fatherAnnualIncome = fatherAnnualIncome;
 	}
-	public int getOTP() {
+	public String getOTP() {
 		return OTP;
 	}
-	public void setOTP(int OTP) {
+	public void setOTP(String OTP) {
 		this.OTP = OTP;
 	}
 	public Student(long id, String firstName, String lastName, String fatherFirstName, String mobileNumber,
 			String schoolStream, String townName, String collageStream, String aadharNumber, String schoolName,
 			String tenthPercentage, String eleventhPercentage, String twelthPercentage, String casteCategory,
-			String fatherAnnualIncome, int oTP) {
+			String fatherAnnualIncome, String oTP) {
 		super();
 //		this.id = id;
 		this.firstName = firstName;

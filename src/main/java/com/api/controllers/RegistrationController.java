@@ -84,7 +84,7 @@ public class RegistrationController {
 
 				
 			    int serverOtp = otpservice.getOtp(phoneno);
-				int clientOtp = student.getOTP();
+				int clientOtp = Integer.parseInt(student.getOTP());
 				System.out.println("client"+clientOtp);
 				System.out.println("server"+serverOtp);
 				
@@ -95,6 +95,7 @@ public class RegistrationController {
 //					code for save data to DB
 					 String y = student.getMobileNumber();
 					 student.setMobileNumber("+91"+y);
+					 student.setOTP(null);
 					  Student student2 = this.studentService.addStudent(student);
 					   if(student2 == null)
 					   {
