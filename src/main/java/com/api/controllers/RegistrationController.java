@@ -44,7 +44,7 @@ public class RegistrationController {
 	   @PostMapping("/getotp")
 	   public ResponseEntity<String> sendOTP(@RequestBody SmsPojo sms)
 	   {
-		   String s = sms.getPhoneNo();   
+		   String s = sms.getMobileNumber();   
 		   if(this.studentRepository.findByMobileNumber(s) != null) 
 		   {
 			   return ResponseEntity.ok("user already Register");
@@ -57,7 +57,7 @@ public class RegistrationController {
 	         	 System.out.println("hello"); 
 	         	 service.send(sms);
 	              System.out.println("hello");
-	              webSocket.convertAndSend(TOPIC_DESTINATION, getTimeStamp() + ": SMS has been sent!: "+sms.getPhoneNo());
+	              webSocket.convertAndSend(TOPIC_DESTINATION, getTimeStamp() + ": SMS has been sent!: "+sms.getMobileNumber());
 	              return new ResponseEntity<String>("OTP Send successfully",HttpStatus.OK);
 	              }
 	             catch(Exception e){

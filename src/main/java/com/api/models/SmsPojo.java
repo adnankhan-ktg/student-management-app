@@ -5,20 +5,28 @@ import org.springframework.stereotype.Component;
 @Component
 public class SmsPojo {
 	
+	private String mobileNumber;
 
-	private String phoneNo;
-
-	public String getPhoneNo() {
-		return phoneNo;
+	public String getMobileNumber() {
+		return "+91"+mobileNumber;
 	}
 
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = "+91"+phoneNo;
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
 	}
 
-	@Override
-	public String toString() {
-		return "SmsPojo [phoneNo=" + phoneNo + "]";
+	
+	public SmsPojo() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
+
+	public SmsPojo(String mobileNumber) {
+		super();
+		this.mobileNumber = mobileNumber;
+	}
+
+	
+
 	
 }

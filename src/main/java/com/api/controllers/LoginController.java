@@ -34,7 +34,7 @@ public class LoginController {
 	   public ResponseEntity<String> sendOTP(@RequestBody SmsPojo sms)
 	   {
 //		 check student are registered  or not
-		   String s = sms.getPhoneNo();   
+		   String s = sms.getMobileNumber();   
 		   if(this.studentRepository.findByMobileNumber(s) != null) 
 		   {
 			   try{
@@ -42,7 +42,7 @@ public class LoginController {
                //	 send opt at time of user login
 		         	 service.send(sms);
 		              System.out.println("hello");
-		              webSocket.convertAndSend(TOPIC_DESTINATION, getTimeStamp() + ": SMS has been sent!: "+sms.getPhoneNo());
+		              webSocket.convertAndSend(TOPIC_DESTINATION, getTimeStamp() + ": SMS has been sent!: "+sms.getMobileNumber());
 		              return new ResponseEntity<String>("OTP Send successfully",HttpStatus.OK);
 		              }
 		             catch(Exception e){

@@ -31,13 +31,13 @@ public class SmsService {
       
     	
         
-        int number=otpService.generateOTP(sms.getPhoneNo());
+        int number=otpService.generateOTP(sms.getMobileNumber());
       
         
         String msg ="Your OTP - "+number+ " please verify this OTP in SSISM Student_app";
        
         
-        Message message = Message.creator(new PhoneNumber(sms.getPhoneNo()), new PhoneNumber(FROM_NUMBER), msg).create();
+        Message message = Message.creator(new PhoneNumber(sms.getMobileNumber()), new PhoneNumber(FROM_NUMBER), msg).create();
         System.out.println(message);
        
     }
