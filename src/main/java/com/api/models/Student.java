@@ -23,8 +23,7 @@ public class Student {
      private String twelthPercentage;
      private String casteCategory;
      private String fatherAnnualIncome;
-     private String OTP;
-
+     private String otp;
 	public String getFirstName() {
 		return firstName;
 	}
@@ -109,18 +108,17 @@ public class Student {
 	public void setFatherAnnualIncome(String fatherAnnualIncome) {
 		this.fatherAnnualIncome = fatherAnnualIncome;
 	}
-	public String getOTP() {
-		return OTP;
+	public String getOtp() {
+		return otp;
 	}
-	public void setOTP(String OTP) {
-		this.OTP = OTP;
+	public void setOtp(String otp) {
+		this.otp = otp;
 	}
-	public Student(long id, String firstName, String lastName, String fatherFirstName, String mobileNumber,
-			String schoolStream, String townName, String collageStream, String aadharNumber, String schoolName,
-			String tenthPercentage, String eleventhPercentage, String twelthPercentage, String casteCategory,
-			String fatherAnnualIncome, String oTP) {
+	public Student(String firstName, String lastName, String fatherFirstName, String mobileNumber, String schoolStream,
+			String townName, String collageStream, String aadharNumber, String schoolName, String tenthPercentage,
+			String eleventhPercentage, String twelthPercentage, String casteCategory, String fatherAnnualIncome,
+			String otp) {
 		super();
-//		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.fatherFirstName = fatherFirstName;
@@ -135,30 +133,21 @@ public class Student {
 		this.twelthPercentage = twelthPercentage;
 		this.casteCategory = casteCategory;
 		this.fatherAnnualIncome = fatherAnnualIncome;
-		this.OTP = oTP;
+		this.otp = otp;
 	}
 	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
-		
 	}
 	@Override
 	public String toString() {
-		return "Student [ firstName=" + firstName + ", lastName=" + lastName + ", fatherFirstName="
-				+ fatherFirstName + ", mobileNumber=" + mobileNumber + ", schoolStream=" + schoolStream
-				+ ", townName=" + townName + ", collageStream=" + collageStream + ", aadharNumber=" + aadharNumber
-				+ ", schoolName=" + schoolName + ", tenthPercentage=" + tenthPercentage + ", eleventhPercentage="
-				+ eleventhPercentage + ", twelthPercentage=" + twelthPercentage + ", casteCategory=" + casteCategory
-				+ ", fatherAnnualIncome=" + fatherAnnualIncome + ", OTP=" + OTP + "]";
+		return "Student [firstName=" + firstName + ", lastName=" + lastName + ", fatherFirstName=" + fatherFirstName
+				+ ", mobileNumber=" + mobileNumber + ", schoolStream=" + schoolStream + ", townName=" + townName
+				+ ", collageStream=" + collageStream + ", aadharNumber=" + aadharNumber + ", schoolName=" + schoolName
+				+ ", tenthPercentage=" + tenthPercentage + ", eleventhPercentage=" + eleventhPercentage
+				+ ", twelthPercentage=" + twelthPercentage + ", casteCategory=" + casteCategory
+				+ ", fatherAnnualIncome=" + fatherAnnualIncome + ", otp=" + otp + "]";
 	}
      
      
-     
-     
-     
-
-	
-	
-
-
 }

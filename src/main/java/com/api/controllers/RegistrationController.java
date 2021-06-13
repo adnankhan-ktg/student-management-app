@@ -77,25 +77,26 @@ public class RegistrationController {
 	   @PostMapping("/register")
 	   public ResponseEntity<String> addStudent(@RequestBody Student student)
 	   {
-
+                 
 				System.out.println(student.toString());
 				
 				String phoneno = "+91"+student.getMobileNumber();
 
 				
 			    int serverOtp = otpservice.getOtp(phoneno);
-				int clientOtp = Integer.parseInt(student.getOTP());
+				int clientOtp = Integer.parseInt(student.getOtp());
 				System.out.println("client"+clientOtp);
 				System.out.println("server"+serverOtp);
 				
 				if(clientOtp == serverOtp) {
 					otpservice.clearOTP(phoneno);
 //					student.setOTP(0);
+					System.out.println("otp varified");
 					
 //					code for save data to DB
 					 String y = student.getMobileNumber();
 					 student.setMobileNumber("+91"+y);
-					 student.setOTP(null);
+					 student.setOtp(null);
 					  Student student2 = this.studentService.addStudent(student);
 					   if(student2 == null)
 					   {
