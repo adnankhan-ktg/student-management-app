@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.api.config.JwtTokenUtil;
 import com.api.models.JwtRequest;
+import com.api.models.JwtResponse;
 import com.api.models.SmsPojo;
 import com.api.models.Student;
 import com.api.repositories.StudentRepository;
@@ -88,7 +89,7 @@ public class LoginController {
 	     }
 	 
 	 @PostMapping("/login")
-	   public ResponseEntity<String> loginStudent(@RequestBody JwtRequest request)
+	   public ResponseEntity<?> loginStudent(@RequestBody JwtRequest request)
 	   {
                		
 				String phoneno = "+91"+request.getMobileNumber();
@@ -107,15 +108,17 @@ public class LoginController {
 					final UserDetails userDetails = userDetailsService.loadUserByUsername("+91"+request.getMobileNumber());
 					System.out.println(userDetails.getUsername());
 
-					final String token = jwtTokenUtil.generateToken(userDetails);
+					final String token1 = jwtTokenUtil.generateToken(userDetails);
+					JwtResponse token = new JwtResponse(token1);
 			          
 					 
 					  
 					return ResponseEntity.ok(token);
+				}else {
+					return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("please enter correct 'OTP'!!!");
 				}
 
 				
-				return null;
 					
 					
 					
