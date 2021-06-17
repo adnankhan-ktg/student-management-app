@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,13 +18,13 @@ import com.api.config.JwtTokenUtil;
 import com.api.models.JwtRequest;
 import com.api.models.JwtResponse;
 import com.api.models.SmsPojo;
-import com.api.models.Student;
 import com.api.repositories.StudentRepository;
 import com.api.services.JwtUserDetailsService;
 import com.api.services.OtpService;
 import com.api.services.SmsService;
 
 @RestController
+@CrossOrigin
 public class LoginController {
 	
 	@Autowired
@@ -72,12 +73,12 @@ public class LoginController {
 		              }
 		             catch(Exception e){
 
-		         	 return new ResponseEntity<String>("somthing problem",HttpStatus.INTERNAL_SERVER_ERROR);
+		         	 return new ResponseEntity<String>("OTP not send",HttpStatus.INTERNAL_SERVER_ERROR);
 		         }
 		   }
 		   else
 		   {
-			   return ResponseEntity.ok("user are not  Register");
+			   return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User are not register");
 		   
 		  
 		            }
@@ -115,7 +116,7 @@ public class LoginController {
 					  
 					return ResponseEntity.ok(token);
 				}else {
-					return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("please enter correct 'OTP'!!!");
+					return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Please enter correct OTP");
 				}
 
 				
