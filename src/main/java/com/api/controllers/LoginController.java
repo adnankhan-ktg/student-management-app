@@ -68,7 +68,7 @@ public class LoginController {
                //	 send opt at time of user login
 		         	 service.send(sms);
 		              System.out.println("hello");
-		              webSocket.convertAndSend(TOPIC_DESTINATION, getTimeStamp() + ": SMS has been sent!: "+sms.getMobileNumber());
+//		              webSocket.convertAndSend(TOPIC_DESTINATION, getTimeStamp() + ": SMS has been sent!: "+sms.getMobileNumber());
 		              return new ResponseEntity<String>("OTP Send successfully",HttpStatus.OK);
 		              }
 		             catch(Exception e){
@@ -93,7 +93,7 @@ public class LoginController {
 	   public ResponseEntity<?> loginStudent(@RequestBody JwtRequest request)
 	   {
                		
-				String phoneno = "+91"+request.getMobileNumber();
+				String phoneno = "91"+request.getMobileNumber();
 
 				
 			    int serverOtp = otpService.getOtp(phoneno);
@@ -106,7 +106,7 @@ public class LoginController {
 //					student.setOTP(0);
 					System.out.println("otp varified");
 					
-					final UserDetails userDetails = userDetailsService.loadUserByUsername("+91"+request.getMobileNumber());
+					final UserDetails userDetails = userDetailsService.loadUserByUsername("91"+request.getMobileNumber());
 					System.out.println(userDetails.getUsername());
 
 					final String token1 = jwtTokenUtil.generateToken(userDetails);

@@ -44,10 +44,12 @@ public class RegistrationController {
 	   @PostMapping("/getotp")
 	   public ResponseEntity<String> sendOTP(@RequestBody SmsPojo sms)
 	   {
-		   String s = sms.getMobileNumber();   
+		   String s = sms.getMobileNumber();  
+		   System.out.println(s);
 		   if(this.studentRepository.findByMobileNumber(s) != null) 
 		   {
-			   return ResponseEntity.ok("user already Register");
+			   return new ResponseEntity<String>("user already Register",HttpStatus.ALREADY_REPORTED);
+//					   ResponseEntity("user already Register");
 		   }
 		   else
 		   {
@@ -57,7 +59,7 @@ public class RegistrationController {
 	         	 System.out.println("hello"); 
 	         	 service.send(sms);
 	              System.out.println("hello");
-	              webSocket.convertAndSend(TOPIC_DESTINATION, getTimeStamp() + ": SMS has been sent!: "+sms.getMobileNumber());
+//	              webSocket.convertAndSend(TOPIC_DESTINATION, getTimeStamp() + ": SMS has been sent!: "+sms.getMobileNumber());
 	              return new ResponseEntity<String>("OTP Send successfully",HttpStatus.OK);
 	              }
 	             catch(Exception e){
@@ -67,10 +69,10 @@ public class RegistrationController {
 		   
 	   }
 	   
-	   private String getTimeStamp() {
-	        return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now());
-	     }
-	
+//	   private String getTimeStamp() {
+//	        return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now());
+//	     }
+//	
 	   
 	   
 	   
@@ -80,7 +82,7 @@ public class RegistrationController {
                  
 				System.out.println(student.toString());
 				
-				String phoneno = "+91"+student.getMobileNumber();
+				String phoneno = "91"+student.getMobileNumber();
 
 				
 			    int serverOtp = otpservice.getOtp(phoneno);
@@ -95,7 +97,7 @@ public class RegistrationController {
 					
 //					code for save data to DB
 					 String y = student.getMobileNumber();
-					 student.setMobileNumber("+91"+y);
+					 student.setMobileNumber("91"+y);
 					 student.setOtp(null);
 					  Student student2 = this.studentService.addStudent(student);
 					   if(student2 == null)
@@ -103,12 +105,13 @@ public class RegistrationController {
 						   return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();   
 					   }
 					   else {
-					   return ResponseEntity.ok("Your registration is done!");
+					   return ResponseEntity.status(HttpStatus.CREATED).body("Your registration is done!");
+//							   ResponseEntity.badRequest("Your registration is done!");
 					   }
 					
 					
 				}else {
-					return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("please enter correct 'OTP'!!!");
+					return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("please enter correct 'OTP'!!!");
 				}	
 	   }
 }

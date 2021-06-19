@@ -8,7 +8,7 @@ public class SmsPojo {
 	private String mobileNumber;
 
 	public String getMobileNumber() {
-		return "+91"+mobileNumber;
+		return "91"+mobileNumber;
 	}
 
 	public void setMobileNumber(String mobileNumber) {
