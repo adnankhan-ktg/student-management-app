@@ -30,8 +30,8 @@ public class LoginController {
 	@Autowired
     private StudentRepository studentRepository;
 	
-    @Autowired
-    private SimpMessagingTemplate webSocket;
+//    @Autowired
+//    private SimpMessagingTemplate webSocket;
     
 	@Autowired
     SmsService service;
@@ -45,13 +45,13 @@ public class LoginController {
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 	
-	 private final String  TOPIC_DESTINATION = "/lesson/sms";
+//	 private final String  TOPIC_DESTINATION = "/lesson/sms";
 	 
 	 
-	 @GetMapping("/home")
+	 @GetMapping("/")
 	 public String home()
 	 {
-	  return "Home+Home";
+	  return "Hello i am Home from string boot";
 		 
 	 }
 	
@@ -66,6 +66,7 @@ public class LoginController {
 			   try{
 		         	 System.out.println("hello"); 
                //	 send opt at time of user login
+		         	 sms.setSmsType("Login");
 		         	 service.send(sms);
 		              System.out.println("hello");
 //		              webSocket.convertAndSend(TOPIC_DESTINATION, getTimeStamp() + ": SMS has been sent!: "+sms.getMobileNumber());

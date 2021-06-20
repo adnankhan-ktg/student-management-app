@@ -62,7 +62,8 @@ public class SmsService {
         String GeneratedOtpString = Integer.toString(GeneratedOtp);
 
         String mobileNumber = sms.getMobileNumber();
-        System.out.println("okok"+mobileNumber);
+        String Type = sms.getSmsType();
+        System.out.println("okok"+mobileNumber+Type);
 //        
 
         
@@ -70,8 +71,8 @@ public class SmsService {
         OkHttpClient client = new OkHttpClient().newBuilder()
         		  .build();
         		MediaType mediaType = MediaType.parse("application/json");
-        		@SuppressWarnings("deprecation")
-				RequestBody body = RequestBody.create(mediaType, "{"
+//        		@SuppressWarnings("deprecation")
+				RequestBody body = RequestBody.create( "{"
         				+ "\n  \"SenderId\": \"BWBHSC\","
         				+ "\n  \"Is_Unicode\": true,"
         				+ "\n  \"Is_Flash\": false,"
@@ -79,7 +80,7 @@ public class SmsService {
         				+ "\n  \"MobileNumbers\": \""+mobileNumber+"\","
         				+ "\n  \"ApiKey\": \"6SCzcO1CzznAffqHDTdfr4b2atB+d1HE22rGGWa5kWM=\","
         				+ "\n  \"ClientId\": \"e038f2d0-1e34-46ef-8513-92a2ee011a57\""
-        				+ "\n}");
+        				+ "\n}",mediaType);
         		Request request = new Request.Builder()
         		  .url("https://api.mylogin.co.in/api/v2/SendSMS")
         		  .method("POST", body)

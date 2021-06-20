@@ -1,12 +1,12 @@
 package com.api.controllers;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+//import java.time.LocalDateTime;
+//import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
+//import org.springframework.messaging.simp.SimpMessagingTemplate;
 //import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,13 +31,13 @@ public class RegistrationController {
 	@Autowired
     SmsService service;
 
-    @Autowired
-    private SimpMessagingTemplate webSocket;
+//    @Autowired
+//    private SimpMessagingTemplate webSocket;
     
     @Autowired
     private StudentRepository studentRepository;
     
-    private final String  TOPIC_DESTINATION = "/lesson/sms";
+//    private final String  TOPIC_DESTINATION = "/lesson/sms";
     
 
 	
@@ -57,6 +57,7 @@ public class RegistrationController {
 		  
 		         try{
 	         	 System.out.println("hello"); 
+	         	 sms.setSmsType("Registration");
 	         	 service.send(sms);
 	              System.out.println("hello");
 //	              webSocket.convertAndSend(TOPIC_DESTINATION, getTimeStamp() + ": SMS has been sent!: "+sms.getMobileNumber());
