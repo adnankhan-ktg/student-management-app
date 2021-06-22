@@ -1,5 +1,7 @@
 package com.api.dao.impl;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,7 @@ public class StudentServiceImpl implements StudentService {
 		
 		  Student student1 = null;
 		  try {
+			  student.setId(UUID.randomUUID().toString());
 	        student1 =  this.studentRepository.save(student);
 	        return student1;
 		  }
@@ -34,6 +37,19 @@ public class StudentServiceImpl implements StudentService {
 		  }
 	        
 	        
+	}
+
+	
+	@Override
+	public Student updateStudent(Student student) {
+		
+		return this.studentRepository.save(student);
+	}
+
+
+	@Override
+	public Student getStudent(String mobile) {
+		return this.studentRepository.findByMobileNumber(mobile);
 	}
 
 
