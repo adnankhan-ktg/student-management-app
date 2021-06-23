@@ -1,5 +1,6 @@
 package com.api.controllers;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -119,10 +120,9 @@ public class LoginController {
 				}else {
 					return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Please enter correct OTP");
 				}
+	   }
 
-				
+		
 					
 					
-					
-					
-	   }}
+	   }
