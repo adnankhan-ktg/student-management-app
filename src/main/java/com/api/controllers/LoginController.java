@@ -1,13 +1,11 @@
 package com.api.controllers;
 
-import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +17,7 @@ import com.api.config.JwtTokenUtil;
 import com.api.models.JwtRequest;
 import com.api.models.JwtResponse;
 import com.api.models.SmsPojo;
+import com.api.models.Student;
 import com.api.repositories.StudentRepository;
 import com.api.services.JwtUserDetailsService;
 import com.api.services.OtpService;
@@ -112,11 +111,17 @@ public class LoginController {
 					System.out.println(userDetails.getUsername());
 
 					final String token1 = jwtTokenUtil.generateToken(userDetails);
-					JwtResponse token = new JwtResponse(token1);
+					
+				    String username = "91"+request.getMobileNumber();
+				    
+				    Student s = this.studentRepository.findByMobileNumber(username);
+				    
+				    
+				    return ResponseEntity.ok(new JwtResponse(token1, s.getFirstName(),s.getLastName()));
+				    
 			          
 					 
 					  
-					return ResponseEntity.ok(token);
 				}else {
 					return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Please enter correct OTP");
 				}

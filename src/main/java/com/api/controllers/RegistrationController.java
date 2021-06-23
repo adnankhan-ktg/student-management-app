@@ -6,15 +6,20 @@ package com.api.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.messaging.simp.SimpMessagingTemplate;
 //import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.config.JwtTokenUtil;
+import com.api.models.JwtResponse;
 import com.api.models.SmsPojo;
 import com.api.models.Student;
 import com.api.repositories.StudentRepository;
+import com.api.services.JwtUserDetailsService;
 import com.api.services.OtpService;
 import com.api.services.SmsService;
 import com.api.services.StudentService;
@@ -36,6 +41,10 @@ public class RegistrationController {
     
     @Autowired
     private StudentRepository studentRepository;
+	@Autowired
+	private JwtUserDetailsService userDetailsService;
+	@Autowired
+	private JwtTokenUtil jwtTokenUtil;
     
 //    private final String  TOPIC_DESTINATION = "/lesson/sms";
     
@@ -78,7 +87,7 @@ public class RegistrationController {
 	   
 	   
 	   @PostMapping("/register")
-	   public ResponseEntity<String> addStudent(@RequestBody Student student)
+	   public ResponseEntity<?> addStudent(@RequestBody Student student)
 	   {
                  
 				System.out.println(student.toString());
@@ -106,8 +115,12 @@ public class RegistrationController {
 						   return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();   
 					   }
 					   else {
-					   return ResponseEntity.status(HttpStatus.CREATED).body("Your registration is done!");
-//							   ResponseEntity.badRequest("Your registration is done!");
+						   
+			  final UserDetails userDetails = userDetailsService.loadUserByUsername(student2.getMobileNumber());
+			  final String token1 = jwtTokenUtil.generateToken(userDetails);
+			    
+						   
+					   return ResponseEntity.status(HttpStatus.CREATED).body(new JwtResponse(token1, student2.getFirstName(), student2.getLastName()));							   
 					   }
 					
 					
