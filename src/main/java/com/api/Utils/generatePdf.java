@@ -61,8 +61,9 @@ public class generatePdf {
 //=======
        String FirstName = Character.toUpperCase(tempStudent.getFirstName().charAt(0))+tempStudent.getFirstName().substring(1);
        String FatherFirstName = Character.toUpperCase(tempStudent.getFatherFirstName().charAt(0))+tempStudent.getFatherFirstName().substring(1);
+       String lastName = Character.toUpperCase(tempStudent.getLastName().charAt(0))+tempStudent.getLastName().substring(1);
         
-        String StudentFullName = FirstName+" "+tempStudent.getLastName()+" S/O "+FatherFirstName;
+        String StudentFullName = FirstName+" S/O "+FatherFirstName+" "+lastName;
 		String studentClass = tempStudent.getCollageStream();
 //>>>>>>> ad17561c111515d94ac46d2661b6f72d2c56aaf1
 		
