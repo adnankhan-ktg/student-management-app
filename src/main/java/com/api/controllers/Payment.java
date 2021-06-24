@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.Utils.generatePdf;
+import com.itextpdf.text.DocumentException;
 import com.razorpay.*;
 
 @RestController
@@ -36,6 +37,7 @@ public class Payment {
 		
 		var client = new RazorpayClient("rzp_test_IdYhaTbIE9F0Yt", "aCr3qhk2GydxlrYxSWP97Jx3");
 		JSONObject options = new JSONObject();
+//		amount in paise
 		options.put("amount",150000);
 		options.put("currency", "INR");
 		options.put("receipt", "txn_123456");
@@ -53,7 +55,7 @@ public class Payment {
 	}
 	
 	@PostMapping("/create_reciept")
-	public ResponseEntity<InputStreamResource> create_reciept(@RequestBody Map<String,String> map) throws RazorpayException, IOException, URISyntaxException {
+	public ResponseEntity<InputStreamResource> create_reciept(@RequestBody Map<String,String> map) throws RazorpayException, IOException, URISyntaxException, DocumentException {
 	 
 		System.out.println(map.get("razorpay_order_id"));
 		System.out.println(map.get("razorpay_payment_id"));
@@ -69,10 +71,9 @@ public class Payment {
 		options.put("razorpay_order_id", razorpay_order_id);
 		options.put("razorpay_payment_id", razorpay_payment_id);
 		options.put("razorpay_signature", razorpay_signature);
-		
+//		                                                                   secret key razorpay
 	boolean generated_signature = Utils.verifyPaymentSignature(options, "aCr3qhk2GydxlrYxSWP97Jx3");
-		
-//		generated_signature = hmac_sha256(razorpay_order_id + "|" + razorpay_payment_id , "aCr3qhk2GydxlrYxSWP97Jx3");  
+	 
 		if (generated_signature) {    
 			
 //			Db order id to DB with timestamp 
@@ -85,7 +86,7 @@ public class Payment {
 //			open
 			
 //			pdf generate
-			genratePdf.generatePdfReciept(razorpay_order_id);
+			genratePdf.generatePdfReciept(razorpay_order_id,razorpay_payment_id);
 			
 //			pdf save
 			
