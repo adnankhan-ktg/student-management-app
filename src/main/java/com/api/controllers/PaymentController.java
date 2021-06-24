@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.api.Utils.generatePdf;
 import com.api.models.PaymentInformation;
 import com.api.services.PaymentInformationService;
+import com.itextpdf.text.DocumentException;
 import com.razorpay.*;
 
 @RestController
@@ -64,7 +65,7 @@ public class PaymentController {
 	}
 	
 	@PostMapping("/create_reciept")
-	public ResponseEntity<InputStreamResource> create_reciept(@RequestBody Map<String,String> map) throws RazorpayException, IOException, URISyntaxException {
+	public ResponseEntity<InputStreamResource> create_reciept(@RequestBody Map<String,String> map) throws RazorpayException, IOException, URISyntaxException, DocumentException {
 	 
 		System.out.println(map.get("razorpay_order_id")); 
 		System.out.println(map.get("razorpay_payment_id"));
@@ -96,7 +97,7 @@ public class PaymentController {
 //			open
 			
 //			pdf generate
-			genratePdf.generatePdfReciept(razorpay_order_id);
+			genratePdf.generatePdfReciept(razorpay_order_id, razorpay_payment_id);
 			
 //			pdf save
 			

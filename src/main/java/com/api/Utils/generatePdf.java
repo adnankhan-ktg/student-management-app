@@ -55,16 +55,16 @@ public class generatePdf {
 
         System.out.println(tempStudent.toString());
         
-<<<<<<< HEAD
-        String StudentFullName = tempStudent.getFirstName()+" "+" S/O "+tempStudent.getFatherFirstName()+" "+tempStudent.getLastName();
-		 
-=======
+//<<<<<<< HEAD
+//        String StudentFullName = tempStudent.getFirstName()+" "+" S/O "+tempStudent.getFatherFirstName()+" "+tempStudent.getLastName();
+//		 
+//=======
        String FirstName = Character.toUpperCase(tempStudent.getFirstName().charAt(0))+tempStudent.getFirstName().substring(1);
        String FatherFirstName = Character.toUpperCase(tempStudent.getFatherFirstName().charAt(0))+tempStudent.getFatherFirstName().substring(1);
         
         String StudentFullName = FirstName+" "+tempStudent.getLastName()+" S/O "+FatherFirstName;
 		String studentClass = tempStudent.getCollageStream();
->>>>>>> ad17561c111515d94ac46d2661b6f72d2c56aaf1
+//>>>>>>> ad17561c111515d94ac46d2661b6f72d2c56aaf1
 		
 		
 //		reciept path
