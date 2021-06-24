@@ -55,7 +55,7 @@ public class generatePdf {
 
         System.out.println(tempStudent.toString());
         
-        String StudentFullName = tempStudent.getFirstName()+" "+tempStudent.getLastName()+" S/O "+tempStudent.getFatherFirstName();
+        String StudentFullName = tempStudent.getFirstName()+" "+" S/O "+tempStudent.getFatherFirstName()+" "+tempStudent.getLastName();
 		 
 		
 		 

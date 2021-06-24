@@ -23,7 +23,7 @@ import com.api.Utils.generatePdf;
 import com.razorpay.*;
 
 @RestController
-public class Payment {
+public class PaymentController {
 	
 	@Autowired
 	private generatePdf genratePdf;
@@ -40,7 +40,9 @@ public class Payment {
 		options.put("currency", "INR");
 		options.put("receipt", "txn_123456");
 		Order order = client.Orders.create(options);
+		
 //		order = null;
+	
 		if(order != null)
 		{
 			System.out.println(order);
@@ -55,7 +57,7 @@ public class Payment {
 	@PostMapping("/create_reciept")
 	public ResponseEntity<InputStreamResource> create_reciept(@RequestBody Map<String,String> map) throws RazorpayException, IOException, URISyntaxException {
 	 
-		System.out.println(map.get("razorpay_order_id"));
+		System.out.println(map.get("razorpay_order_id")); 
 		System.out.println(map.get("razorpay_payment_id"));
 		System.out.println(map.get("razorpay_signature"));
 		
