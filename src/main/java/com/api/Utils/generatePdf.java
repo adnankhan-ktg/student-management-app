@@ -107,7 +107,7 @@ public class generatePdf {
 		 
 		 List header = new List();
 //		   add title
-		 String Title = "SANT SINGAJI INSTITUTE OF SCIENCE AND MANAGEMENT";
+		 String Title = "SANT SINGAJI INSTITUTE OF SCIENCE & MANAGEMENT";
 		 ListItem titleItem = new ListItem(Title);
 		 titleItem.setFontSize(15);
 		 titleItem.setMarginTop(15);
