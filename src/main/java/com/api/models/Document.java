@@ -3,15 +3,17 @@ package com.api.models;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.stereotype.Component;
 
 
 @org.springframework.data.mongodb.core.mapping.Document(collection = "document")
+@Component
 public class Document {
 	
 	@Id
 	private String mobileNumber;
-	private String tenthMarkSheet;
-	private String twelthMarkSheet;
+	private String tenthMarksheet;
+	private String twelthMarksheet;
 	private String incomeCertificate;
 	private String castCertificate;
 	private String domicileCertificate;
@@ -21,25 +23,23 @@ public class Document {
 	private String BankPassBook;
 	private String houseFrontPhotoWithFamily;
 	private List<String> otherCertificate;
-	
-	
 	public String getMobileNumber() {
 		return mobileNumber;
 	}
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
-	public String getTenthMarkSheet() {
-		return tenthMarkSheet;
+	public String getTenthMarksheet() {
+		return tenthMarksheet;
 	}
-	public void setTenthMarkSheet(String tenthMarkSheet) {
-		this.tenthMarkSheet = tenthMarkSheet;
+	public void setTenthMarksheet(String tenthMarksheet) {
+		this.tenthMarksheet = tenthMarksheet;
 	}
-	public String getTwelthMarkSheet() {
-		return twelthMarkSheet;
+	public String getTwelthMarksheet() {
+		return twelthMarksheet;
 	}
-	public void setTwelthMarkSheet(String twelthMarkSheet) {
-		this.twelthMarkSheet = twelthMarkSheet;
+	public void setTwelthMarksheet(String twelthMarksheet) {
+		this.twelthMarksheet = twelthMarksheet;
 	}
 	public String getIncomeCertificate() {
 		return incomeCertificate;
@@ -95,13 +95,13 @@ public class Document {
 	public void setOtherCertificate(List<String> otherCertificate) {
 		this.otherCertificate = otherCertificate;
 	}
-	public Document(String mobileNumber, String tenthMarkSheet, String twelthMarkSheet, String incomeCertificate,
+	public Document(String mobileNumber, String tenthMarksheet, String twelthMarksheet, String incomeCertificate,
 			String castCertificate, String domicileCertificate, String tcCopy, String passportPhoto, String aadharCard,
 			String bankPassBook, String houseFrontPhotoWithFamily, List<String> otherCertificate) {
 		super();
 		this.mobileNumber = mobileNumber;
-		this.tenthMarkSheet = tenthMarkSheet;
-		this.twelthMarkSheet = twelthMarkSheet;
+		this.tenthMarksheet = tenthMarksheet;
+		this.twelthMarksheet = twelthMarksheet;
 		this.incomeCertificate = incomeCertificate;
 		this.castCertificate = castCertificate;
 		this.domicileCertificate = domicileCertificate;
@@ -118,8 +118,8 @@ public class Document {
 	}
 	@Override
 	public String toString() {
-		return "Document [mobileNumber=" + mobileNumber + ", tenthMarkSheet=" + tenthMarkSheet + ", twelthMarkSheet="
-				+ twelthMarkSheet + ", incomeCertificate=" + incomeCertificate + ", castCertificate=" + castCertificate
+		return "Document [mobileNumber=" + mobileNumber + ", tenthMarksheet=" + tenthMarksheet + ", twelthMarksheet="
+				+ twelthMarksheet + ", incomeCertificate=" + incomeCertificate + ", castCertificate=" + castCertificate
 				+ ", domicileCertificate=" + domicileCertificate + ", tcCopy=" + tcCopy + ", passportPhoto="
 				+ passportPhoto + ", aadharCard=" + aadharCard + ", BankPassBook=" + BankPassBook
 				+ ", houseFrontPhotoWithFamily=" + houseFrontPhotoWithFamily + ", otherCertificate=" + otherCertificate

@@ -1,5 +1,6 @@
 package com.api.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +19,7 @@ import com.api.services.DocumentService;
 @RequestMapping("/document")
 public class DocumentController {
 	
+	@Autowired
 	private DocumentService documentService;
 	
 	
@@ -28,6 +30,7 @@ public class DocumentController {
                 .getPrincipal();
 String username = userDetails.getUsername();
   document.setMobileNumber(username);
+  System.out.println(document);
     
       Document document1 = this.documentService.addDocument(document);
       if(document1 == null)
