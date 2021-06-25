@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import com.api.models.Student;
+import com.api.repositories.StudentRepository;
 import com.api.services.StudentService;
 
 import com.itextpdf.io.image.ImageData;
@@ -44,6 +45,9 @@ import com.itextpdf.text.DocumentException;
 public class generatePdf {
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
+	private StudentRepository studentRepository;
  
 	public void generatePdfReciept(String orderID , String paymentID) throws FileNotFoundException, URISyntaxException, MalformedURLException, DocumentException {
 		
@@ -62,8 +66,22 @@ public class generatePdf {
        String FirstName = Character.toUpperCase(tempStudent.getFirstName().charAt(0))+tempStudent.getFirstName().substring(1);
        String FatherFirstName = Character.toUpperCase(tempStudent.getFatherFirstName().charAt(0))+tempStudent.getFatherFirstName().substring(1);
        String lastName = Character.toUpperCase(tempStudent.getLastName().charAt(0))+tempStudent.getLastName().substring(1);
+       
+       
+       String gender = tempStudent.getGender();
+       
+       String genderValue = null;
+       
+       if(gender.equalsIgnoreCase("m"))
+       {
+    	   genderValue = " S/O ";
+       }
+       else {
+    	   genderValue = " D/O ";
+       }
+          
         
-        String StudentFullName = FirstName+" S/O "+FatherFirstName+" "+lastName;
+        String StudentFullName = FirstName+genderValue+FatherFirstName+" "+lastName;
 		String studentClass = tempStudent.getCollageStream();
 //>>>>>>> ad17561c111515d94ac46d2661b6f72d2c56aaf1
 		

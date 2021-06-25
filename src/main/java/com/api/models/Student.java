@@ -26,6 +26,7 @@ public class Student {
      private String casteCategory;
      private String fatherAnnualIncome;
      private String districtName;
+     private String gender;
      private String otp;
 	public String getId() {
 		return id;
@@ -123,6 +124,12 @@ public class Student {
 	public void setDistrictName(String districtName) {
 		this.districtName = districtName;
 	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	public String getOtp() {
 		return otp;
 	}
@@ -132,7 +139,7 @@ public class Student {
 	public Student(String id, String firstName, String lastName, String fatherFirstName, String mobileNumber,
 			String schoolStream, String townName, String collageStream, String aadharNumber, String schoolName,
 			String tenthPercentage, String eleventhPercentage, String twelthPercentage, String casteCategory,
-			String fatherAnnualIncome, String districtName, String otp) {
+			String fatherAnnualIncome, String districtName, String gender, String otp) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -150,6 +157,7 @@ public class Student {
 		this.casteCategory = casteCategory;
 		this.fatherAnnualIncome = fatherAnnualIncome;
 		this.districtName = districtName;
+		this.gender = gender;
 		this.otp = otp;
 	}
 	public Student() {
@@ -163,13 +171,11 @@ public class Student {
 				+ townName + ", collageStream=" + collageStream + ", aadharNumber=" + aadharNumber + ", schoolName="
 				+ schoolName + ", tenthPercentage=" + tenthPercentage + ", eleventhPercentage=" + eleventhPercentage
 				+ ", twelthPercentage=" + twelthPercentage + ", casteCategory=" + casteCategory
-				+ ", fatherAnnualIncome=" + fatherAnnualIncome + ", districtName=" + districtName + ", otp=" + otp
-				+ "]";
+				+ ", fatherAnnualIncome=" + fatherAnnualIncome + ", districtName=" + districtName + ", gender=" + gender
+				+ ", otp=" + otp + "]";
 	}
      
-	
      
      
      
-     
-}
+	}
