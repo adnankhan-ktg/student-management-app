@@ -41,5 +41,34 @@ public class DocumentServiceImpl implements DocumentService {
                      return d;		          
 		}
 	}
+	@Override
+	public Document update(Document document) {
+		
+		Document d = this.documentRepository.findByMobileNumber(document.getMobileNumber());
+	
+		  d.setTenthMarksheet(((document.getTenthMarksheet() != null) ? document.getTenthMarksheet() : d.getTenthMarksheet()));
+		  d.setTwelthMarksheet(((document.getTwelthMarksheet() != null) ? document.getTwelthMarksheet() : d.getTwelthMarksheet()));
+		  d.setIncomeCertificate(((document.getIncomeCertificate() != null) ? document.getIncomeCertificate() : d.getIncomeCertificate()));
+		  d.setCastCertificate(((document.getCastCertificate() != null) ? document.getCastCertificate() : d.getCastCertificate()));
+		  d.setDomicileCertificate(((document.getDomicileCertificate() != null) ? document.getDomicileCertificate() : d.getDomicileCertificate()));
+		  d.setTcCopy(((document.getTcCopy() != null) ? document.getTcCopy() : d.getTcCopy()));
+		  d.setPassportPhoto(((document.getPassportPhoto() != null) ? document.getPassportPhoto() : d.getPassportPhoto()));
+		  d.setAadharCard(((document.getAadharCard() != null) ? document.getAadharCard() : d.getAadharCard()));
+		  d.setBankPassBook(((document.getBankPassBook() != null) ? document.getBankPassBook() : d.getBankPassBook()));
+		  d.setHouseFrontPhotoWithFamily(((document.getHouseFrontPhotoWithFamily() != null) ? document.getHouseFrontPhotoWithFamily() : d.getHouseFrontPhotoWithFamily()));
+		  
+		          
+		   Document d1 = null;
+		   try {
+        		      d1 = this.documentRepository.save(d);
+        		      return d1;
+		   }catch (Exception e) {
+			 e.printStackTrace();
+			 return d;
+		}
+		   
+		   
+                		
+	}
 
 }
