@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.models.Document;
+import com.api.repositories.DocumentRepository;
 import com.api.services.DocumentService;
 
 @RestController
@@ -24,6 +25,8 @@ public class DocumentController {
 	
 	@Autowired
 	private DocumentService documentService;
+	@Autowired
+	private DocumentRepository documentRepository;
 	
 	
 	@PostMapping("/upload")
@@ -34,6 +37,20 @@ public class DocumentController {
 String username = userDetails.getUsername();
   document.setMobileNumber(username);
   System.out.println(document);
+   if(this.documentRepository.findByMobileNumber(username) != null)
+   {
+	   System.out.println("already");
+	      Document d = this.documentService.update(document);
+	      if(d == null)
+	      {
+	    	  return ResponseEntity.status(HttpStatus.NOT_MODIFIED).build();
+	      }
+	      else
+	      {
+	    	  return ResponseEntity.status(HttpStatus.OK).build();
+	      }
+   }
+   else {
     
       Document document1 = this.documentService.addDocument(document);
       if(document1 == null)
@@ -44,19 +61,8 @@ String username = userDetails.getUsername();
     	  return ResponseEntity.status(HttpStatus.CREATED).build();
       }
 	}
+	}
   
-/*private String mobileNumber;
-	private String tenthMarksheet;
-	private String twelthMarksheet;
-	private String incomeCertificate;
-	private String castCertificate;
-	private String domicileCertificate;
-	private String tcCopy;
-	private String passportPhoto;
-	private String aadharCard;
-	private String BankPassBook;
-	private String houseFrontPhotoWithFamily;
-	private List<String> otherCertificate;*/
   
   
 
