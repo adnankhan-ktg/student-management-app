@@ -38,7 +38,7 @@ student.setMobileNumber(tempStudent.getMobileNumber());
 student.setSchoolStream(tempStudent.getSchoolStream());
 student.setTownName(tempStudent.getTownName());
 student.setDistrictName(tempStudent.getDistrictName());
-student.setGender(username);
+
 
 
 //............................

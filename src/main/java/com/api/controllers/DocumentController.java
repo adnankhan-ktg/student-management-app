@@ -47,7 +47,7 @@ String username = userDetails.getUsername();
 	      }
 	      else
 	      {
-	    	  return ResponseEntity.status(HttpStatus.OK).build();
+	    	  return ResponseEntity.status(HttpStatus.CREATED).build();
 	      }
    }
    else {

@@ -8,7 +8,7 @@ import java.net.URISyntaxException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
+//import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -46,8 +46,8 @@ public class generatePdf {
 	@Autowired
 	private StudentService studentService;
 	
-	@Autowired
-	private StudentRepository studentRepository;
+//	@Autowired
+//	private StudentRepository studentRepository;
  
 	public void generatePdfReciept(String orderID , String paymentID) throws FileNotFoundException, URISyntaxException, MalformedURLException, DocumentException {
 		
@@ -69,10 +69,11 @@ public class generatePdf {
        
        
        String gender = tempStudent.getGender();
+       System.out.println(gender);
        
        String genderValue = null;
        
-       if(gender.equalsIgnoreCase("m"))
+       if(gender.contentEquals("male"))
        {
     	   genderValue = " S/O ";
        }
