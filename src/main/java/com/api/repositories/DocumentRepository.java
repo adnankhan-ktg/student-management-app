@@ -7,5 +7,7 @@ import com.api.models.Document;
 
 @Repository
 public interface DocumentRepository extends MongoRepository<Document, String> {
+	
+	 public Document findByMobileNumber(String mobileNumber);
 
 }
