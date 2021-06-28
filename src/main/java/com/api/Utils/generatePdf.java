@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 //import java.util.Locale;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -80,6 +81,8 @@ public class generatePdf {
        else {
     	   genderValue = " D/O ";
        }
+       
+        String prefix = tempStudent.getCollageStream();
           
         
         String StudentFullName = FirstName+genderValue+FatherFirstName+" "+lastName;
@@ -169,7 +172,9 @@ public class generatePdf {
 		table1.getCell(0,0).setWidthPercent(40);
 
 		
-		String RecieptNo = "Reciept No : " + studentClass;
+		
+	  Random randomNumber = new Random();
+		String RecieptNo = "Reciept No : " + prefix + randomNumber.nextInt(1000);
 		table1.addCell(RecieptNo);
 		table1.getCell(0,1).setTextAlignment(TextAlignment.RIGHT);
 		table1.getCell(0,1).setBorder(Border.NO_BORDER);
