@@ -8,8 +8,8 @@ public class PaymentInformation {
 	
 	@Id
 	private String mobileNumber;
-	private String orderId;
-	private String paymentId;
+	private String razorpay_order_id;
+	private String razorpay_payment_id;
 	private String date;
 	public String getMobileNumber() {
 		return mobileNumber;
@@ -17,17 +17,17 @@ public class PaymentInformation {
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
-	public String getOrderId() {
-		return orderId;
+	public String getRazorpay_order_id() {
+		return razorpay_order_id;
 	}
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
+	public void setRazorpay_order_id(String razorpay_order_id) {
+		this.razorpay_order_id = razorpay_order_id;
 	}
-	public String getPaymentId() {
-		return paymentId;
+	public String getRazorpay_payment_id() {
+		return razorpay_payment_id;
 	}
-	public void setPaymentId(String paymentId) {
-		this.paymentId = paymentId;
+	public void setRazorpay_payment_id(String razorpay_payment_id) {
+		this.razorpay_payment_id = razorpay_payment_id;
 	}
 	public String getDate() {
 		return date;
@@ -35,11 +35,11 @@ public class PaymentInformation {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public PaymentInformation(String mobileNumber, String orderId, String paymentId, String date) {
+	public PaymentInformation(String mobileNumber, String razorpay_order_id, String razorpay_payment_id, String date) {
 		super();
 		this.mobileNumber = mobileNumber;
-		this.orderId = orderId;
-		this.paymentId = paymentId;
+		this.razorpay_order_id = razorpay_order_id;
+		this.razorpay_payment_id = razorpay_payment_id;
 		this.date = date;
 	}
 	public PaymentInformation() {
@@ -48,12 +48,10 @@ public class PaymentInformation {
 	}
 	@Override
 	public String toString() {
-		return "PaymentInformation [mobileNumber=" + mobileNumber + ", orderId=" + orderId + ", paymentId=" + paymentId
-				+ ", date=" + date + "]";
+		return "PaymentInformation [mobileNumber=" + mobileNumber + ", razorpay_order_id=" + razorpay_order_id
+				+ ", razorpay_payment_id=" + razorpay_payment_id + ", date=" + date + "]";
 	}
+	    
+	   
 	
-	
-	
-	
-
-}
+	}
