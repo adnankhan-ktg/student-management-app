@@ -84,8 +84,8 @@ public class generatePdf {
        
         String prefix = tempStudent.getCollageStream();
           
-        
-        String StudentFullName = FirstName+genderValue+FatherFirstName+" "+lastName;
+        	
+        String StudentFullName = FirstName+" "+lastName+" "+genderValue+FatherFirstName;
 		String studentClass = tempStudent.getCollageStream();
 //>>>>>>> ad17561c111515d94ac46d2661b6f72d2c56aaf1
 		
