@@ -25,7 +25,7 @@ public class Student {
      private String twelthPercentage;
      private String casteCategory;
      private String fatherAnnualIncome;
-     private String districtName;
+     private String districtName;                                              
      private String gender;
      private String otp;
 	public String getId() {
