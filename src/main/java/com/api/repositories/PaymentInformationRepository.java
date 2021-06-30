@@ -7,5 +7,7 @@ import com.api.models.PaymentInformation;
 
 @Repository
 public interface PaymentInformationRepository extends MongoRepository<PaymentInformation, String> {
+	
+	  PaymentInformation findByMobileNumber(String mobileNumberString);
 
 }
