@@ -1,5 +1,6 @@
 package com.api.dao.impl;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,27 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public Student getStudent(String mobile) {
 		return this.studentRepository.findByMobileNumber(mobile);
+	}
+
+
+	@Override
+	public List<Student> getStudents() {
+		
+		   return this.studentRepository.findAll();
+	}
+
+
+	@Override
+	public Student updateStudentAtAdminSide(Student student) {
+		
+		   Student tempStudent1 = null;
+		try { 
+			   tempStudent1 = this.studentRepository.save(student);
+			   return tempStudent1;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return tempStudent1;
+		}
 	}
 
 

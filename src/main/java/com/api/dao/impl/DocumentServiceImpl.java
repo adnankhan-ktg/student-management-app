@@ -70,5 +70,18 @@ public class DocumentServiceImpl implements DocumentService {
 		   
                 		
 	}
+	@Override
+	public Document getDocument(String mobileNumber) {
+		Document document12 = null;
+		try {
+			     document12 = this.documentRepository.findByMobileNumber(mobileNumber);
+			     return document12;
+			
+		}catch (Exception e) {
+		 e.printStackTrace();
+		 return document12;
+		}
+	}
+	
 
 }

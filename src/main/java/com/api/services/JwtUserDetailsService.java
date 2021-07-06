@@ -7,27 +7,25 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.api.models.Student;
+import com.api.models.admin.Admin;
 import com.api.repositories.StudentRepository;
+import com.api.repositories.admin.AdminRepository;
 
 import java.util.ArrayList;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
-//	@Autowired
-//	private UserRepository userDao;
 	
  @Autowired
  private StudentRepository studentDao;
-//	@Autowired
-//	private PasswordEncoder bcryptEncoder;
-	
-//	@Autowired
-//	private UserService userService;
-	
+ @Autowired
+ private AdminRepository adminRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//		User user = new User();
+       
+		 if(username.startsWith("91"))
+		 {
 		Student student = new Student();
 		 student = studentDao.findByMobileNumber(username);
 		if (student == null) {
@@ -36,10 +34,22 @@ public class JwtUserDetailsService implements UserDetailsService {
 		return new org.springframework.security.core.userdetails.User(student.getMobileNumber(),"",
 				new ArrayList<>());
 	}
-
-//	public User createUser(User user1) {
-//		user1.setPassword(bcryptEncoder.encode(user1.getPassword()));
-//		return userService.createUser(user1);
-//	}
+    else {
+             Admin admin = new Admin();
+             
+             admin = this.adminRepository.findByUsername(username);
+             if(admin == null)
+             {
+            	 throw new UsernameNotFoundException(username);
+             }
+             return new org.springframework.security.core.userdetails.User(admin.getUsername(),admin.getPassword(),new ArrayList<>());
+	}
+		 
+		 
+		 
+		 
+		 
+		 
+	}
 
 	}
