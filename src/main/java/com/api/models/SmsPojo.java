@@ -5,10 +5,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class SmsPojo {
 	
-	
-
-	
-
 	private String mobileNumber;
 
 	public String getMobileNumber() {

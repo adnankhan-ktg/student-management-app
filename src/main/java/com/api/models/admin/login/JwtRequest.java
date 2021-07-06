@@ -1,4 +1,4 @@
-package com.api.models;
+package com.api.models.admin.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JwtRequest {
-	
-	private String mobileNumber;
-	private String otp;
-	
+	private String username;
+	private String password;
+
 }

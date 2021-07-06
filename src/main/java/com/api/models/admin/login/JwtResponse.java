@@ -1,14 +1,16 @@
-package com.api.models;
+package com.api.models.admin.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class JwtResponse {
 	private String token;
-    private String activeFirstName;
-    private String activeLastName;
-    }
+	private String activeAdminFirstName;
+	private String activeAdminLastName;
+	
+
+}
