@@ -14,7 +14,7 @@
 	<name>student-app</name>
 	<description>Back-End Code For student-app</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>16</java.version>
 	</properties>
 	<dependencies>
 	<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
