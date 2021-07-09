@@ -8,13 +8,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.student_app.models.student.Student;
 import com.student_app.services.student.StudentService;
 
 @RestController
-@CrossOrigin("/student-information")
+@CrossOrigin
+@RequestMapping("/student")
 public class StudentPersonalInformationController {
 	  
 @Autowired
