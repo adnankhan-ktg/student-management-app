@@ -46,19 +46,19 @@ public class AdminController {
 	    	         
 	   }
 	    
-//	    @PutMapping("/update-student")
-//	    public ResponseEntity<?> updateStudentAtAdminSide(Student student)
-//	    {
-//	    	Student tempStudent = this.studentService.updateStudentAtAdminSide(student);
-//	    	if(tempStudent == null)
-//	    	{
-//	    		return ResponseEntity.status(HttpStatus.NOT_MODIFIED).build();
-//	    	}
-//	    	else {
-//	    		return ResponseEntity.status(HttpStatus.OK).body(tempStudent);
-//	    	}
-//	    	
-//	    }
+	    @PostMapping("/update-student")
+	    public ResponseEntity<?> updateStudentAtAdminSide(Student student)
+	    {
+	    	Student tempStudent = this.studentService.updateStudentAtAdminSide(student);
+	    	if(tempStudent == null)
+	    	{
+	    		return ResponseEntity.status(HttpStatus.NOT_MODIFIED).build();
+	    	}
+	    	else {
+	    		return ResponseEntity.status(HttpStatus.OK).body(tempStudent);
+	    	}
+	    	
+	    }
 	    
 	    @PostMapping("/documents")
 	    public ResponseEntity<Document> getDocuments(@RequestBody Map<String,String> map)

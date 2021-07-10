@@ -6,6 +6,7 @@ import com.student_app.models.student.Student;
 public interface AdminService {
 	
 	   public Admin addAdmin(Admin admin);
+	   public Admin updateAdmin(Admin admin);
 	   
 
 }
