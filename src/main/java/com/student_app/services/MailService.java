@@ -37,7 +37,7 @@ public class MailService {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 				// TODO Auto-generated method stub
-				return new PasswordAuthentication("adnank.bca2019@ssism.org","@BCA-2022#2001");
+				return new PasswordAuthentication("adnank.bca2019@ssism.org","***********");
 			}
 		
 		 });
