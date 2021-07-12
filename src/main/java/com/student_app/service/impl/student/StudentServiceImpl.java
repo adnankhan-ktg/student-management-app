@@ -60,19 +60,4 @@ public class StudentServiceImpl implements StudentService {
 		   return this.studentRepository.findAll();
 	}
 
-
-	@Override
-	public Student updateStudentAtAdminSide(Student student) {
-		
-		   Student tempStudent1 = null;
-		try { 
-			   tempStudent1 = this.studentRepository.save(student);
-			   return tempStudent1;
-		}catch (Exception e) {
-			e.printStackTrace();
-			return tempStudent1;
-		}
-	}
-
-
 }
