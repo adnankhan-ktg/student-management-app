@@ -14,13 +14,13 @@ import com.student_app.services.admin.AdminService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/admin-registration")
+@RequestMapping("/admin")
 public class AdminRegistrationController {
 	
 	@Autowired
 	private AdminService adminService;
 	
-	@PostMapping("/register")
+	@PostMapping("/register_admin")
 	public ResponseEntity<?> addAdmin(@RequestBody Admin admin)
 	{
 		    

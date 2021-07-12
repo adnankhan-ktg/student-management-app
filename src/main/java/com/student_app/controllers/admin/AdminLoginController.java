@@ -18,7 +18,6 @@ import com.student_app.services.JwtUserDetailsService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/admin-login")
 public class AdminLoginController {
     
 	@Autowired
@@ -31,7 +30,7 @@ public class AdminLoginController {
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
 	   
-	  @PostMapping("/login")
+	  @PostMapping("/login_admin")
 	  public ResponseEntity<?> RequestToken(@RequestBody JwtRequest jwtRequest)
 	  {
 

@@ -23,7 +23,6 @@ import com.student_app.services.student.StudentService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/student-registration")
 public class StudentRegistrationController {
 	
 	@Autowired
@@ -71,7 +70,7 @@ public class StudentRegistrationController {
 	   }
 	   
 	   
-	   @PostMapping("/register")
+	   @PostMapping("/register_student")
 	   public ResponseEntity<?> addStudent(@RequestBody Student student)
 	   {
                  

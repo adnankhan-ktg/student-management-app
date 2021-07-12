@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.student_app.models.student.Document;
@@ -19,6 +20,7 @@ import com.student_app.repositories.student.StudentRepository;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/student")
 public class ProgressBarController {
 	
 	@Autowired
@@ -27,11 +29,7 @@ public class ProgressBarController {
 	private StudentRepository studentRepository;
 	@Autowired
 	private PaymentInformationRepository paymentRepository;
-	@GetMapping("/home123")
-	public String home()
-	{
-		return "aka123";
-	}
+	
 	@GetMapping("/progress-status")
 	public ResponseEntity<?> progressStatus()
 	{

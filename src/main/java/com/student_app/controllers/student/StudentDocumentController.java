@@ -18,7 +18,7 @@ import com.student_app.services.student.DocumentService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/student-document")
+@RequestMapping("/student")
 public class StudentDocumentController {
 	
 	@Autowired

@@ -3,6 +3,7 @@ package com.student_app.controllers.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import com.student_app.services.OtpService;
 import com.student_app.services.admin.AdminService;
 
 @RestController
+@CrossOrigin
 public class AdminPasswordForgetController {
 	
 	@Autowired
