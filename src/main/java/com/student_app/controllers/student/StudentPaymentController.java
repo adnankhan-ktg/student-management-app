@@ -31,7 +31,7 @@ import com.student_app.models.student.PaymentInformation;
 import com.student_app.services.student.PaymentInformationService;
 
 @RestController
-@CrossOrigin("/student-payment")
+@CrossOrigin("/student")
 public class StudentPaymentController {
 	
 	@Autowired

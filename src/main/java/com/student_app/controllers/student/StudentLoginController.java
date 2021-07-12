@@ -26,7 +26,6 @@ import com.student_app.services.SmsService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/student-login")
 public class StudentLoginController {
 	
 	@Autowired
@@ -78,7 +77,7 @@ public class StudentLoginController {
 	        return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now());
 	     }
 	 
-	 @PostMapping("/login")
+	 @PostMapping("/login_student")
 	   public ResponseEntity<?> loginStudent(@RequestBody JwtRequest request)
 	   {
                		
