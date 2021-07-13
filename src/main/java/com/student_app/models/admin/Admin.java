@@ -18,6 +18,6 @@ public class Admin {
 	private String lastName;
 	private String username;
 	private String password;
-	private String role = "admin";
+	private String role = "ADMIN";
 
 }

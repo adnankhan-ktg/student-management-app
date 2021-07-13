@@ -35,7 +35,7 @@ public class Student {
      private String districtName;                                              
      private String gender;
      private String otp;
-     private String role = "student";
+     private String role = "STUDENT";
      private String status = "for approval";
      private String remark;
      private String altMobileNumber;
