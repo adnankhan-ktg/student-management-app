@@ -1,5 +1,6 @@
 package com.student_app.controllers.admin;
 
+import java.awt.image.RescaleOp;
 import java.util.List;
 import java.util.Map;
 
@@ -80,9 +81,27 @@ public class AdminController {
 	    public ResponseEntity<?> updateStuent(@RequestBody Student student)
 	    {
 	    	 log.info("Request came on the Update Student method");
+	    	 if(this.studentRepository.findByMobileNumber(student.getMobileNumber()) != null)
+	    	 {
 	    	    Student tempStudent = this.studentRepository.save(student);
 	    	    log.debug("Response send to the client");
+	    	    if(tempStudent != null)
+	    	    {
 	    	    return ResponseEntity.status(HttpStatus.OK).body(tempStudent);
+	    	    }else {
+	    	    	return ResponseEntity.status(HttpStatus.NOT_MODIFIED).build();
+	    	    }
+	    	 }else
+	    	 {
+	    		 Student tempStudent1 = this.studentService.addStudent(student);
+	    		 if(tempStudent1 == null)
+	    		 {
+	    			 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	    		 }
+	    		 else {
+	    			 return ResponseEntity.status(HttpStatus.OK).body(tempStudent1);
+	    		 }
+	    	 }
 	    }
 	    
 	    @PostMapping("/update-document")
