@@ -3,6 +3,8 @@ package com.student_app.controllers.admin;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,20 +36,25 @@ public class AdminController {
 	private StudentRepository studentRepository;
 	@Autowired
 	private DocumentRepository documentRepository;
+	
+	private static final Logger log = LoggerFactory.getLogger(AdminController.class);
    
 	    @GetMapping("/students")  
 	   public ResponseEntity<List<Student>> getStudents()
 	   {
-		           
+		      log.info("Get Students method is stared");     
 	    	
+		      log.info("Request sent to the service layer");
 	    List<Student> list =  this.studentService.getStudents();
 	    
 	    if(list.size() == 0)
 	    {
+	    	log.debug("Student list size is zero");
 	    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 	    }
 	    else
 	    {
+	    	log.debug("Student list is send to the client side");
 	    	return ResponseEntity.status(HttpStatus.OK).body(list);
 	    }
 	    	         
@@ -57,13 +64,14 @@ public class AdminController {
 	    @PostMapping("/documents")
 	    public ResponseEntity<Document> getDocuments(@RequestBody Map<String,String> map)
 	    {
-//	    	System.out.println(studentId);
+             log.info("Request came to the get documents method");
 	    	  Document tempDocument = this.documentService.getDocument(map.get("studentId"));
 	    	  if(tempDocument == null)
 	    	  {
 	    		  return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	    	  }
 	    	  else {
+	    		  log.debug("Response send to the client");
 	    		  return ResponseEntity.status(HttpStatus.OK).body(tempDocument);
 	    	  }
 	    }
@@ -71,35 +79,41 @@ public class AdminController {
 	    @PostMapping("/update-student")
 	    public ResponseEntity<?> updateStuent(@RequestBody Student student)
 	    {
-	    	 
+	    	 log.info("Request came on the Update Student method");
 	    	    Student tempStudent = this.studentRepository.save(student);
+	    	    log.debug("Response send to the client");
 	    	    return ResponseEntity.status(HttpStatus.OK).body(tempStudent);
 	    }
 	    
 	    @PostMapping("/update-document")
 	    public ResponseEntity<?> documentUpdate(@RequestBody Document document)
 	    {
+	    	log.info("Request came on the update Student method");
 	    	 if(this.documentRepository.findByMobileNumber(document.getMobileNumber()) != null)
 	    	   {
-	    		   System.out.println("already");
+	    		       log.info("Document object send to the service layer for update student documents");
 	    		      Document d = this.documentService.update(document);
 	    		      if(d == null)
 	    		      {
+	    		    	  log.error("Document not modified");
 	    		    	  return ResponseEntity.status(HttpStatus.NOT_MODIFIED).build();
 	    		      }
 	    		      else
 	    		      {
+	    		    	  log.debug("Document modified successfully");
 	    		    	  return ResponseEntity.status(HttpStatus.CREATED).body(d);
 	    		      }
 	    	   }
 	    	   else {
-	    	    
+	    	           
 	    	      Document document1 = this.documentService.addDocument(document);
 	    	      if(document1 == null)
 	    	      {
+	    	    	  log.error("Document not modified");
 	    	    	  return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 	    	      }
 	    	      else {
+	    	    	  log.debug("Document modified successfully");
 	    	    	  return ResponseEntity.status(HttpStatus.CREATED).build();
 	    	      }
 	    		}
