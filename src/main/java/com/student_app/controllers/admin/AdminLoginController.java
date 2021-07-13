@@ -1,5 +1,7 @@
 package com.student_app.controllers.admin;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,26 +31,30 @@ public class AdminLoginController {
 	
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
+	private static final Logger log = LoggerFactory.getLogger(AdminLoginController.class);
 	   
 	  @PostMapping("/login_admin")
 	  public ResponseEntity<?> RequestToken(@RequestBody JwtRequest jwtRequest)
 	  {
+		  log.info("Request came on the admin login controller");
 
 		  Admin admin1 = null;
-		  System.out.println(jwtRequest.getPassword());
+		  
+		  log.info("Object send to the DAO layer for check username and password");
 		    admin1 = this.adminRepository.findByUsernameAndPassword(jwtRequest.getUsername(), jwtRequest.getPassword());
 		    if(admin1 != null)
 		    {
 		    
 		    final UserDetails userDetails = userDetailsService.loadUserByUsername(jwtRequest.getUsername());
-			System.out.println(userDetails.getUsername());
-
+            
+		    log.info("Object send for generate token");
 			final String token1 = jwtTokenUtil.generateToken(userDetails);
 		    
-		    
+		      log.debug("Admin login successfully");
 		    return ResponseEntity.ok(new com.student_app.models.admin.login.JwtResponse(token1,admin1.getFirstName(),admin1.getLastName()));
 		    }
 		    else {
+		    	log.error("Admin is not found with this Username and password");
 		    	return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		    }
 		    
