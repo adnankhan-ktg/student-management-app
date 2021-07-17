@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.student_app.models.admin.Admin;
 import com.student_app.models.admin.login.forgetpassword.MailRequest;
 import com.student_app.models.admin.login.forgetpassword.PasswordForgetRequest;
@@ -28,9 +27,10 @@ public class AdminPasswordForgetController {
 	@Autowired
 	private MailService mailService;
 	@Autowired
-	private AdminRepository adminRepository;
+	private AdminRepository adminRepository;	
 	@Autowired
 	private AdminService adminService;
+	
 	private static final Logger log = LoggerFactory.getLogger(AdminPasswordForgetController.class);
 	
 	@PostMapping("/get-password-forget-otp")
@@ -84,6 +84,7 @@ public class AdminPasswordForgetController {
 	      public ResponseEntity<?> setNewPassword(@RequestBody UpdatePassword updatePassword)
 	      {
 	    	     log.info("Request came on the update password controller");
+	    	     log.info("Object send to the admin repository layer for find the user");
 	    	    Admin tempAdmin = this.adminRepository.findByUsername(updatePassword.getUsername());
 	    	    if(tempAdmin != null)
 	    	    {
