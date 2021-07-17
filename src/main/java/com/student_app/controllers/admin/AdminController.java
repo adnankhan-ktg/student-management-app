@@ -34,6 +34,14 @@ public class AdminController {
 	private DocumentRepository documentRepository;
 	
 	private static final Logger log = LoggerFactory.getLogger(AdminController.class);
+	
+	@PostMapping("/Authenticate")
+	public ResponseEntity<String> Authenticate(){
+	     log.info("Request came one the Authentication Controller");	
+		System.out.println("Authenticated");
+		
+		return new ResponseEntity<String>("successfully Authenticate",HttpStatus.OK);
+	}
    
 	    @GetMapping("/students")  
 	   public ResponseEntity<List<Student>> getStudents()

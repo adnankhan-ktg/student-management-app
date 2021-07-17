@@ -18,7 +18,7 @@ import com.student_app.repositories.student.StudentRepository;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/authentication")
+@RequestMapping("/student")
 public class Authentication {
 
 	  @Autowired
