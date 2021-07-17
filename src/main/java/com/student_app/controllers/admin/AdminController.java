@@ -1,9 +1,8 @@
 package com.student_app.controllers.admin;
 
-import java.awt.image.RescaleOp;
+
 import java.util.List;
 import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.student_app.models.student.Document;
 import com.student_app.models.student.Student;
 import com.student_app.repositories.student.DocumentRepository;
@@ -29,8 +25,7 @@ import com.student_app.services.student.StudentService;
 public class AdminController {
 	
 	@Autowired
-	private StudentService studentService;
-	
+	private StudentService studentService;	
 	@Autowired
 	private DocumentService documentService;
 	@Autowired
@@ -43,9 +38,9 @@ public class AdminController {
 	    @GetMapping("/students")  
 	   public ResponseEntity<List<Student>> getStudents()
 	   {
-		      log.info("Get Students method is stared");     
-	    	
-		      log.info("Request sent to the service layer");
+		    log.info("Request came to the students contrller");
+		    
+		    log.info("Request sent to the service layer");
 	    List<Student> list =  this.studentService.getStudents();
 	    
 	    if(list.size() == 0)
@@ -65,7 +60,7 @@ public class AdminController {
 	    @PostMapping("/documents")
 	    public ResponseEntity<Document> getDocuments(@RequestBody Map<String,String> map)
 	    {
-             log.info("Request came to the get documents method");
+             log.info("Request came on the documents controller");
 	    	  Document tempDocument = this.documentService.getDocument(map.get("studentId"));
 	    	  if(tempDocument == null)
 	    	  {
@@ -124,7 +119,7 @@ public class AdminController {
 	    		      }
 	    	   }
 	    	   else {
-	    	           
+	    	          log.info("Object send to the document service layer for save the given new Student");
 	    	      Document document1 = this.documentService.addDocument(document);
 	    	      if(document1 == null)
 	    	      {

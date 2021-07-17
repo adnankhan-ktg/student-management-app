@@ -10,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.student_app.models.admin.Admin;
 import com.student_app.models.admin.login.JwtRequest;
@@ -28,9 +27,9 @@ public class AdminLoginController {
 	private PasswordEncoder bcryptEncoder;
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
-	
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
+	
 	private static final Logger log = LoggerFactory.getLogger(AdminLoginController.class);
 	   
 	  @PostMapping("/login_admin")
@@ -41,6 +40,11 @@ public class AdminLoginController {
 		  Admin admin1 = null;
 		  
 		  log.info("Object send to the DAO layer for check username and password");
+		   if(this.adminRepository.findByUsername(jwtRequest.getUsername()) == null)
+		   {          
+			    log.debug("Given admin doesn't exists with this username");
+			   return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		   }
 		    admin1 = this.adminRepository.findByUsernameAndPassword(jwtRequest.getUsername(), jwtRequest.getPassword());
 		    if(admin1 != null)
 		    {
@@ -54,8 +58,8 @@ public class AdminLoginController {
 		    return ResponseEntity.ok(new com.student_app.models.admin.login.JwtResponse(token1,admin1.getFirstName(),admin1.getLastName()));
 		    }
 		    else {
-		    	log.error("Admin is not found with this Username and password");
-		    	return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		    	log.error("Enter admin password is incorrect with this username");
+		    	return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		    }
 		    
 		    
