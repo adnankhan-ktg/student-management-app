@@ -103,7 +103,7 @@ public class StudentLoginController {
 				    Student s = this.studentRepository.findByMobileNumber(username);
 				    
 				    
-				    return ResponseEntity.ok(new JwtResponse(token1, s.getFirstName(),s.getLastName()));
+				    return ResponseEntity.ok(new JwtResponse(token1, s.getFirstName(),s.getLastName(),s.getMobileNumber()));
 			 
 				}else {
 					return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Please enter correct OTP");

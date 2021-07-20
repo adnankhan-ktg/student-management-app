@@ -99,7 +99,7 @@ public class StudentRegistrationController {
 			  final String token1 = jwtTokenUtil.generateToken(userDetails);
 			    
 						   
-					   return ResponseEntity.status(HttpStatus.CREATED).body(new JwtResponse(token1, student2.getFirstName(), student2.getLastName()));							   
+					   return ResponseEntity.status(HttpStatus.CREATED).body(new JwtResponse(token1, student2.getFirstName(), student2.getLastName(),student2.getMobileNumber()));							   
 					   }
 					
 					
