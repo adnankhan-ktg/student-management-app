@@ -40,15 +40,12 @@ public class AdminLoginController {
 		  Admin admin1 = null;
 		  
 		  log.info("Object send to the DAO layer for check username and password");
-		   if(this.adminRepository.findByUsername(jwtRequest.getUsername()) == null)
-		   {          
-			    log.debug("Given admin doesn't exists with this username");
-			   return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		   }
-		    admin1 = this.adminRepository.findByUsernameAndPassword(jwtRequest.getUsername(), jwtRequest.getPassword());
+		   
+		    admin1 = this.adminRepository.findByUsername(jwtRequest.getUsername());
 		    if(admin1 != null)
 		    {
-		    
+		             if(bcryptEncoder.matches(jwtRequest.getPassword(), admin1.getPassword()))
+		             {
 		    final UserDetails userDetails = userDetailsService.loadUserByUsername(jwtRequest.getUsername());
             
 		    log.info("Object send for generate token");
@@ -56,10 +53,14 @@ public class AdminLoginController {
 		    
 		      log.debug("Admin login successfully");
 		    return ResponseEntity.ok(new com.student_app.models.admin.login.JwtResponse(token1,admin1.getFirstName(),admin1.getLastName()));
-		    }
+		             }else {
+		            	 return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+		             }
+		     }
+		             
 		    else {
 		    	log.error("Enter admin password is incorrect with this username");
-		    	return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		    	return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		    }
 		    
 		    

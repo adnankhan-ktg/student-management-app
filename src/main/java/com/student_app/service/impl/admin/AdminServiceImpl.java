@@ -21,7 +21,7 @@ public class AdminServiceImpl implements AdminService {
 	public Admin addAdmin(Admin admin) {
 		admin.setId(UUID.randomUUID().toString());
 		
-//		admin.setPassword(bcryptEncoder.encode(admin.getPassword()));
+		admin.setPassword(bcryptEncoder.encode(admin.getPassword()));
 		  Admin tempAdmin = null;
             try {
                    tempAdmin = this.AdminRepository.save(admin);
