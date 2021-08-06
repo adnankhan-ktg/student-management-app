@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.student_app.models.student.Document;
+import com.student_app.models.student.Student;
 import com.student_app.repositories.student.DocumentRepository;
 import com.student_app.services.student.DocumentService;
+import com.student_app.services.student.StudentService;
 
 @RestController
 @CrossOrigin
@@ -25,6 +27,9 @@ public class StudentDocumentController {
 	private DocumentService documentService;
 	@Autowired
 	private DocumentRepository documentRepository;
+	
+	@Autowired
+	private StudentService studentService;
 	
 	
 	@PostMapping("/upload")
@@ -45,17 +50,23 @@ String username = userDetails.getUsername();
 	      }
 	      else
 	      {
+	    	  Student tempStudent = this.studentService.getStudent(username);
+	    	    tempStudent.setProfilePhoto(document.getPassportPhoto());
+	    	    this.studentService.updateStudent(tempStudent);
 	    	  return ResponseEntity.status(HttpStatus.CREATED).build();
 	      }
    }
    else {
-    
+             
       Document document1 = this.documentService.addDocument(document);
       if(document1 == null)
       {
     	  return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
       }
       else {
+    	    Student tempStudent = this.studentService.getStudent(username);
+    	    tempStudent.setProfilePhoto(document.getPassportPhoto());
+    	    this.studentService.updateStudent(tempStudent);
     	  return ResponseEntity.status(HttpStatus.CREATED).build();
       }
 	}

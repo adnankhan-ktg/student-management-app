@@ -1,6 +1,9 @@
 package com.student_app.controllers.student;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -75,6 +78,8 @@ public class StudentRegistrationController {
 	   {
                  
 				System.out.println(student.toString());
+				String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+				student.setRegistrationDate(date);
 				
 				String phoneno = "91"+student.getMobileNumber();				
 			    int serverOtp = otpservice.getOtp(phoneno);

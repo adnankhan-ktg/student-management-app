@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 //import java.util.Map;
@@ -21,6 +22,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,10 +30,14 @@ import com.itextpdf.text.DocumentException;
 import com.razorpay.*;
 import com.student_app.Utils.generatePdf;
 import com.student_app.models.student.PaymentInformation;
+import com.student_app.models.student.Student;
+import com.student_app.repositories.student.PaymentInformationRepository;
 import com.student_app.services.student.PaymentInformationService;
+import com.student_app.services.student.StudentService;
 
 @RestController
-@CrossOrigin("/student")
+@CrossOrigin()
+@RequestMapping("/student")
 public class StudentPaymentController {
 	
 	@Autowired
@@ -39,6 +45,10 @@ public class StudentPaymentController {
 	
 	@Autowired
 	private PaymentInformationService paymentInformationService;
+	@Autowired
+	private StudentService studentService;
+	@Autowired
+	private PaymentInformationRepository payRepo;
 	
 	@PostMapping("/create_order")
 	public ResponseEntity<String> create_order() throws RazorpayException {
@@ -122,9 +132,37 @@ public class StudentPaymentController {
 		 UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
 	                .getPrincipal();
 	String username = userDetails.getUsername();
+	PaymentInformation payTemp = this.payRepo.findByMobileNumber(username);
+	if(payTemp != null)
+	{
+		return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).build();
+	}
 	paymentInformation.setMobileNumber(username);
 	String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 	paymentInformation.setDate(date);
+	
+	 Student tempStudent1 = this.studentService.getStudent(username);
+	 String branch = tempStudent1.getCollageStream();
+	 
+	
+	///
+	  List<PaymentInformation> list  = this.payRepo.findAll();
+	  if(list.size() == 0)
+	  {
+		  paymentInformation.setReceiptNumber(branch+"/"+date+"/"+1);
+	  }
+	  else {
+		  PaymentInformation tempPay = list.get(list.size() - 1);
+		  String uniq = tempPay.getReceiptNumber();
+		  String [] arr = uniq.split("/");
+		  long l = Integer.parseInt(arr[2]);
+		  paymentInformation.setReceiptNumber(branch+"/"+date+"/"+(l+1));
+		  System.out.println(paymentInformation.getReceiptNumber());
+		  
+	  }
+		  
+		  
+		  
 	
               PaymentInformation payInfo = null;
               payInfo = this.paymentInformationService.addPaymentInformation(paymentInformation);
@@ -134,6 +172,10 @@ public class StudentPaymentController {
             	   return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
                }
                else {
+            	   Student tempStudent = this.studentService.getStudent(username);
+           	    tempStudent.setPaymentStatus(true);
+           	    this.studentService.updateStudent(tempStudent);
+            	   
             	   return ResponseEntity.status(HttpStatus.OK).build();
                }
 	}

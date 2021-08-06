@@ -44,14 +44,31 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public Student updateStudent(Student student) {
 		
-		return this.studentRepository.save(student);
+		
+		Student tempStudent = null;
+		try {
+		tempStudent = this.studentRepository.save(student);
+		return tempStudent;
+		}catch (Exception e) {
+		  e.printStackTrace();
+		  return tempStudent;
+		}
 	}
 
 
 	@Override
 	public Student getStudent(String mobile) {
-		return this.studentRepository.findByMobileNumber(mobile);
+		Student tempStudent = null;
+		try {
+		tempStudent = this.studentRepository.findByMobileNumber(mobile);
+		return tempStudent;
+		
+	}catch (Exception e) {
+	        e.printStackTrace();
+	        return tempStudent;
+	        	
 	}
+		}
 
 
 	@Override
