@@ -39,4 +39,7 @@ public class Student {
      private String status = "for approval";
      private String remark;
      private String altMobileNumber;
+     private String registrationDate;
+     private boolean paymentStatus = false;
+     private String profilePhoto;
     }

@@ -18,4 +18,5 @@ public class PaymentInformation {
 	private String razorpay_order_id;
 	private String razorpay_payment_id;
 	private String date;
+	private String receiptNumber;
 		}
