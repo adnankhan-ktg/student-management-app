@@ -79,7 +79,7 @@ public class StudentRegistrationController {
                  
 				System.out.println(student.toString());
 				String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-				student.setRegistrationDate(date);
+//				System.out.println(date);
 				
 				String phoneno = "91"+student.getMobileNumber();				
 			    int serverOtp = otpservice.getOtp(phoneno);
@@ -92,7 +92,9 @@ public class StudentRegistrationController {
 					System.out.println("otp varified");
 					 String y = student.getMobileNumber();
 					 student.setMobileNumber("91"+y);
+					 student.setRegistrationDate(date);
 					 student.setOtp(null);
+					 
 					  Student student2 = this.studentService.addStudent(student);
 					   if(student2 == null)
 					   {
