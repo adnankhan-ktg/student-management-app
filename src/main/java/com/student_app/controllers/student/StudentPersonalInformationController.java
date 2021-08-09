@@ -42,7 +42,7 @@ student.setSchoolStream(tempStudent.getSchoolStream());
 student.setTownName(tempStudent.getTownName());
 student.setDistrictName(tempStudent.getDistrictName());
 student.setGender(tempStudent.getGender());
-
+student.setRegistrationDate(tempStudent.getRegistrationDate());
 Student stu = this.studentService.updateStudent(student);
 if(stu == null) {
 	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

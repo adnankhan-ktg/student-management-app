@@ -78,7 +78,7 @@ public class StudentRegistrationController {
 	   {
                  
 				System.out.println(student.toString());
-				String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+				
 //				System.out.println(date);
 				
 				String phoneno = "91"+student.getMobileNumber();				
@@ -92,6 +92,7 @@ public class StudentRegistrationController {
 					System.out.println("otp varified");
 					 String y = student.getMobileNumber();
 					 student.setMobileNumber("91"+y);
+					 String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 					 student.setRegistrationDate(date);
 					 student.setOtp(null);
 					 
