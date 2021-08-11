@@ -28,13 +28,17 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.text.DocumentException;
+import com.student_app.models.student.PaymentInformation;
 import com.student_app.models.student.Student;
+import com.student_app.services.student.PaymentInformationService;
 import com.student_app.services.student.StudentService;
 
 @Service
 public class generatePdf {
 	@Autowired
 	private StudentService studentService;
+	@Autowired
+	private PaymentInformationService paymentInfoService;
 
  
 	public void generatePdfReciept(String orderID , String paymentID) throws FileNotFoundException, URISyntaxException, MalformedURLException, DocumentException {
@@ -42,6 +46,7 @@ public class generatePdf {
         String username = userDetails.getUsername();
 
          Student tempStudent = this.studentService.getStudent(username);
+         PaymentInformation payTemp =  this.paymentInfoService.getPaymentInformation(username);
 
         System.out.println(tempStudent.toString());
 
@@ -141,7 +146,7 @@ public class generatePdf {
 		
 		
 	  Random randomNumber = new Random();
-		String RecieptNo = "Reciept No : " + prefix + randomNumber.nextInt(1000);
+		String RecieptNo = "Reciept No : "+ payTemp.getReceiptNumber();
 		table1.addCell(RecieptNo);
 		table1.getCell(0,1).setTextAlignment(TextAlignment.RIGHT);
 		table1.getCell(0,1).setBorder(Border.NO_BORDER);

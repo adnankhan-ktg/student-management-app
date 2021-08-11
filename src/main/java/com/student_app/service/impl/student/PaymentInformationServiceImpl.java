@@ -30,4 +30,16 @@ public class PaymentInformationServiceImpl implements PaymentInformationService 
 
 	}
 
+	@Override
+	public PaymentInformation getPaymentInformation(String username) {
+		PaymentInformation pay = null;
+		try {
+			pay = this.paymentInformationRepository.findByMobileNumber(username);
+			return pay;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return pay;
+		}
+	}
+
 }

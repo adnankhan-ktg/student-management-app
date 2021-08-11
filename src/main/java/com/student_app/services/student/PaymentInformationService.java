@@ -4,5 +4,6 @@ import com.student_app.models.student.PaymentInformation;
 
 public interface PaymentInformationService {
 	public PaymentInformation addPaymentInformation(PaymentInformation info);
+	public PaymentInformation getPaymentInformation(String username);
 
 }
