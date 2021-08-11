@@ -28,9 +28,9 @@ public class StudentDocumentController {
 	@Autowired
 	private DocumentRepository documentRepository;
 	
-	@Autowired
-	private StudentService studentService;
-	
+//	@Autowired
+//	private StudentService studentService;
+//	
 	
 	@PostMapping("/upload")
 	public ResponseEntity<?> addDocument(@RequestBody Document document)
@@ -50,9 +50,9 @@ String username = userDetails.getUsername();
 	      }
 	      else
 	      {
-	    	  Student tempStudent = this.studentService.getStudent(username);
-	    	    tempStudent.setProfilePhoto(document.getPassportPhoto());
-	    	    this.studentService.updateStudent(tempStudent);
+//	    	  Student tempStudent = this.studentService.getStudent(username);
+//	    	    tempStudent.setProfilePhoto(document.getPassportPhoto());
+//	    	    this.studentService.updateStudent(tempStudent);
 	    	  return ResponseEntity.status(HttpStatus.CREATED).build();
 	      }
    }
@@ -64,9 +64,9 @@ String username = userDetails.getUsername();
     	  return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
       }
       else {
-    	    Student tempStudent = this.studentService.getStudent(username);
-    	    tempStudent.setProfilePhoto(document.getPassportPhoto());
-    	    this.studentService.updateStudent(tempStudent);
+//    	    Student tempStudent = this.studentService.getStudent(username);
+//    	    tempStudent.setProfilePhoto(document.getPassportPhoto());
+//    	    this.studentService.updateStudent(tempStudent);
     	  return ResponseEntity.status(HttpStatus.CREATED).build();
       }
 	}

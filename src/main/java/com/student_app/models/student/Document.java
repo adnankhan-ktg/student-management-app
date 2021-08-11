@@ -26,7 +26,7 @@ public class Document {
 	private String tcCopy;
 	private String passportPhoto;
 	private String aadharCard;
-	private String BankPassBook;
+	private String bankPassBook;
 	private String houseFrontPhotoWithFamily;
 	private List<String> otherCertificate;
 	}
