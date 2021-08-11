@@ -32,7 +32,7 @@ public class Student {
      private String twelthPercentage;
      private String casteCategory;
      private String fatherAnnualIncome;
-     private String districtName;                                              
+     private String trackName;                                              
      private String gender;
      private String otp;
      private String role = "STUDENT";

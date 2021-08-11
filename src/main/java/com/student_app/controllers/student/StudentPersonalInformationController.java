@@ -40,7 +40,7 @@ student.setFatherFirstName(tempStudent.getFatherFirstName());
 student.setMobileNumber(tempStudent.getMobileNumber());
 student.setSchoolStream(tempStudent.getSchoolStream());
 student.setTownName(tempStudent.getTownName());
-student.setDistrictName(tempStudent.getDistrictName());
+student.setTrackName(tempStudent.getTrackName());
 student.setGender(tempStudent.getGender());
 student.setRegistrationDate(tempStudent.getRegistrationDate());
 Student stu = this.studentService.updateStudent(student);
