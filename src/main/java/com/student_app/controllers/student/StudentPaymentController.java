@@ -54,6 +54,16 @@ public class StudentPaymentController {
 	public ResponseEntity<String> create_order() throws RazorpayException {
 	 
 		System.out.println("order");
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+String username = userDetails.getUsername();
+		
+		PaymentInformation paymentTemp = null;
+		paymentTemp = this.payRepo.findByMobileNumber(username);
+		if(paymentTemp != null)
+		{
+			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).build();
+		}
 		
 		
 		var client = new RazorpayClient("rzp_test_IdYhaTbIE9F0Yt", "aCr3qhk2GydxlrYxSWP97Jx3");
