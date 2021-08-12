@@ -105,7 +105,7 @@ String username = userDetails.getUsername();
 	  
 		if (generated_signature) {    
 
-			genratePdf.generatePdfReciept(razorpay_order_id, razorpay_payment_id);
+			genratePdf.generatePdfReciept();
 		
 			
 			System.out.println("order ok "); 
