@@ -41,7 +41,7 @@ public class generatePdf {
 	private PaymentInformationService paymentInfoService;
 
  
-	public void generatePdfReciept(String orderID , String paymentID) throws FileNotFoundException, URISyntaxException, MalformedURLException, DocumentException {
+	public void generatePdfReciept() throws FileNotFoundException, URISyntaxException, MalformedURLException, DocumentException {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = userDetails.getUsername();
 
@@ -137,7 +137,7 @@ public class generatePdf {
 		
 		@SuppressWarnings("deprecation")
 		Table table1 = new Table(2);
-		String orderId = "Order ID : "+ orderID;
+		String orderId = "Order ID : "+ payTemp.getRazorpay_order_id();
 		table1.addCell(orderId);
 		table1.getCell(0,0).setTextAlignment(TextAlignment.LEFT);
 		table1.getCell(0,0).setBorder(Border.NO_BORDER);
@@ -157,7 +157,7 @@ public class generatePdf {
 
 		@SuppressWarnings("deprecation")
 		Table table2 = new Table(2);
-		String PaymentId = "Payment ID : "+ paymentID;
+		String PaymentId = "Payment ID : "+ payTemp.getRazorpay_payment_id();
 		table2.addCell(PaymentId);
 		table2.getCell(0,0).setTextAlignment(TextAlignment.LEFT);
 		table2.getCell(0,0).setBorder(Border.NO_BORDER);
